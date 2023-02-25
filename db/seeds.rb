@@ -4,7 +4,11 @@ require 'faker'
 puts "🌱 Seeding data..."
 10.times do
   User.create(name: Faker::Name.name)
-  Product.create(name: Faker::Commerce.product_name)
+  Product.create(
+    name: Faker::Commerce.product_name,
+    price: Faker::Commerce.price(range: 0..100.0, as_string: true),
+    description: Faker::Lorem.paragraph(sentence_count: 5)
+  )
 end
 
 # Create some reviews associated with users and products
